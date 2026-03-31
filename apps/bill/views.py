@@ -1,6 +1,7 @@
 # from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import status
 
 from .utils import store_bill_details
 
@@ -10,4 +11,10 @@ def create_bill(request):
     bill_data = request.data
 
     bill = store_bill_details(bill_data)
-    return Response({'message': f'Bill {bill.id} created successfully'})
+    return Response(
+        {
+            'message': f'Bill {bill.id} created successfully',
+            'bill_id': bill.id
+        }, 
+        status=status.HTTP_201_CREATED
+    )
