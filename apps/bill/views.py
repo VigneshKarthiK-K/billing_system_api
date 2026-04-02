@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+from .models import Bill
+from .serializers import BillSerializer
 from .utils import store_bill_details
 
 # Create your views here.
@@ -18,3 +20,15 @@ def create_bill(request):
         }, 
         status=status.HTTP_201_CREATED
     )
+
+@api_view(['GET'])
+def show_bill(request, bill_id):
+
+    try:
+        bill = Bill.objects.get(id=bill_id)
+    except Bill.DoesNotExist:
+        return Response({'error': 'Bill not found'}, status=404)
+
+    bill_json = BillSerializer(bill)
+
+    return Response(bill_json.data)
