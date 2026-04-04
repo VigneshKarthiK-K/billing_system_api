@@ -13,13 +13,17 @@ def create_bill(request):
     bill_data = request.data
 
     bill = store_bill_details(bill_data)
-    return Response(
-        {
+    if bill:
+        response = {
             'message': f'Bill {bill.id} created successfully',
             'bill_id': bill.id
-        }, 
-        status=status.HTTP_201_CREATED
-    )
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
+    else:
+        response = {
+            'message': 'Something went wrong please try again later',
+        }
+        return Response(response, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 def show_bill(request, bill_id):

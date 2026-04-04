@@ -31,4 +31,5 @@ def store_bill_details(bill_data):
         
         print('Bill created successfully', bill.id)
         
-    return bill
+        return bill
+    return False
