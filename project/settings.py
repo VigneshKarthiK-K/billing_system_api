@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-imq^8a)jm$8msc%^$s%+on$x#47*9ptt0nlk0#-&@3ukznso_)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vicky8programmer.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    'vicky8programmer.pythonanywhere.com',
+    'localhost'
+]
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
@@ -46,7 +49,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'apps.product',
-    'apps.bill'
+    'apps.bill',
+    'apps.visitor'
 ]
 
 MIDDLEWARE = [
