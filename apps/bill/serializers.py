@@ -4,8 +4,6 @@ from apps.product.serializers import ProductBasicSerializer
 
 class BillItemSerializer(serializers.ModelSerializer):
     product = ProductBasicSerializer(read_only=True)
-    tax_amount = serializers.ReadOnlyField()
-    total_amount = serializers.ReadOnlyField()
     class Meta:
         model = BillItem
         fields = [
@@ -19,9 +17,6 @@ class BillItemSerializer(serializers.ModelSerializer):
 
 class BillSerializer(serializers.ModelSerializer):
     items = BillItemSerializer(many=True)
-    total_without_tax = serializers.ReadOnlyField()
-    total_tax = serializers.ReadOnlyField()
-    net_price = serializers.ReadOnlyField()
 
     class Meta:
         model = Bill
