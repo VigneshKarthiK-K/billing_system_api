@@ -31,7 +31,7 @@ def show_bill(request, bill_id):
     try:
         bill = Bill.objects.get(id=bill_id)
     except Bill.DoesNotExist:
-        return Response({'error': 'Bill not found'}, status=404)
+        return Response({'error': 'Bill not found'}, status=status.HTTP_404_NOT_FOUND)
 
     bill_json = BillSerializer(bill)
 
