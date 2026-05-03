@@ -36,3 +36,9 @@ def show_bill(request, bill_id):
     bill_json = BillSerializer(bill)
 
     return Response(bill_json.data)
+
+@api_view(['GET'])
+def list_bills(request):
+    bills = Bill.objects.all()
+    bills_json = BillSerializer(bills, many=True)
+    return Response(bills_json.data)
